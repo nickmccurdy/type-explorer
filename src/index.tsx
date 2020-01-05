@@ -55,7 +55,7 @@ function App() {
   const [pkg, setPkg] = useState("");
   const [source, setSource] = useState("");
 
-  async function doThing(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
       const typesUrl = await getTypesUrl(pkg);
@@ -71,7 +71,7 @@ function App() {
   }
 
   return (
-    <form onSubmit={doThing} style={{ height: "100%" }}>
+    <form onSubmit={handleSubmit} style={{ height: "100%" }}>
       Package:{" "}
       <input value={pkg} onChange={event => setPkg(event.target.value)} />
       <br />
