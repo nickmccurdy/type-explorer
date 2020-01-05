@@ -79,7 +79,7 @@ function App() {
       {source && (
         <MonacoEditor
           language="typescript"
-          defaultValue={source}
+          value={source}
           options={{ readOnly: true, minimap: { enabled: false } }}
         />
       )}
