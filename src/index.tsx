@@ -71,7 +71,7 @@ function App() {
   }
 
   return (
-    <form onSubmit={doThing}>
+    <form onSubmit={doThing} style={{ height: "100%" }}>
       Package:{" "}
       <input value={pkg} onChange={event => setPkg(event.target.value)} />
       <br />
