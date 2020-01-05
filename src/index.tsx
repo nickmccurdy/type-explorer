@@ -80,7 +80,7 @@ function App() {
         <MonacoEditor
           language="typescript"
           defaultValue={source}
-          options={{ readOnly: true }}
+          options={{ readOnly: true, minimap: { enabled: false } }}
         />
       )}
     </form>
