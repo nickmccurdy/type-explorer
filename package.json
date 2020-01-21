@@ -1,5 +1,5 @@
 {
-  "name": "typescript-explorer",
+  "name": "type-explorer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
