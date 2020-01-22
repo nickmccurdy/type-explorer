@@ -71,8 +71,10 @@ export default function App() {
 
   return (
     <form onSubmit={handleSubmit} style={{ height: "100%" }}>
-      Package:{" "}
-      <input value={pkg} onChange={event => setPkg(event.target.value)} />
+      <label>
+        Package:{" "}
+        <input value={pkg} onChange={event => setPkg(event.target.value)} />
+      </label>
       <br />
       <button>Submit</button>
       {source && (
