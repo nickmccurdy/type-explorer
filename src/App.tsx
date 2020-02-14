@@ -50,14 +50,11 @@ async function getManifest(pkg: string) {
 }
 
 async function getTypesUrl(pkg: string) {
-  const [pkgHasTypesPkg, pkgTypes] = await Promise.all([
-    hasTypesPkg(pkg),
-    getManifest(pkg)
-  ]);
+  const pkgTypes = await getManifest(pkg);
 
   if (pkgTypes) {
     return `https://unpkg.com/${pkg}/${pkgTypes}`;
-  } else if (pkgHasTypesPkg) {
+  } else if (await hasTypesPkg(pkg)) {
     return `https://unpkg.com/@types/${pkg}/index.d.ts`;
   }
 }
