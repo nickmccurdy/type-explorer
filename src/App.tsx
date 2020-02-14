@@ -62,6 +62,15 @@ async function getTypesUrl(pkg: string) {
   }
 }
 
+async function getTypes(pkg: string) {
+  const typesUrl = await getTypesUrl(pkg);
+
+  if (typesUrl) {
+    const response = await fetch(typesUrl);
+    return response.text();
+  }
+}
+
 export default function App() {
   const [pkg, setPkg] = useState("");
   const [source, setSource] = useState("");
@@ -69,13 +78,7 @@ export default function App() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      const typesUrl = await getTypesUrl(pkg);
-      if (typesUrl) {
-        const response = await fetch(typesUrl);
-        setSource(await response.text());
-      } else {
-        setSource("");
-      }
+      setSource((await getTypes(pkg)) || "");
     } catch (error) {
       console.error(error);
     }
