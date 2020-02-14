@@ -85,7 +85,11 @@ export default function App() {
     <form onSubmit={handleSubmit} style={{ height: "100%" }}>
       <label>
         Package:{" "}
-        <input value={pkg} onChange={event => setPkg(event.target.value)} />
+        <input
+          type="search"
+          value={pkg}
+          onChange={event => setPkg(event.target.value)}
+        />
       </label>
       <br />
       <button>Submit</button>
