@@ -25,19 +25,31 @@ async function hasTypesPkg(pkg: string) {
   return data.some(({ t }) => t === pkg);
 }
 
-async function getManifest(pkg: string): Promise<string> {
+interface Package {
+  "dist-tags": {
+    latest: string;
+  };
+  versions: {
+    [version: string]: {
+      types?: string;
+      typings?: string;
+    };
+  };
+}
+
+async function getManifest(pkg: string) {
   const response = await fetch(
     `https://cors-anywhere.herokuapp.com/https://registry.npmjs.com/${pkg}`
   );
   if (!response.ok) {
     throw await response.text();
   }
-  const data = await response.json();
+  const data: Package = await response.json();
   const pkgJson = data.versions[data["dist-tags"].latest];
   return pkgJson.types || pkgJson.typings;
 }
 
-async function getTypesUrl(pkg: string): Promise<string | undefined> {
+async function getTypesUrl(pkg: string) {
   const [pkgHasTypesPkg, pkgTypes] = await Promise.all([
     hasTypesPkg(pkg),
     getManifest(pkg)
